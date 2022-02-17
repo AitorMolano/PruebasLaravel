@@ -11,11 +11,14 @@ class Articulo extends Model
 
     protected $fillable = [
         'titulo',
-        'contenido'
+        'contenido',
     ];
 
-    public function comentarios()
-    {
+    public function comentarios(){
         return $this->hasMany(Comentario::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }

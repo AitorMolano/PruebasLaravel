@@ -7,14 +7,17 @@
     <title>Articulos</title>
 </head>
 <body>
-    <h2>Listado Articulos</h2>
-    <h2>Bienvenido, @usuario</h2>
-    <!--
+<h1>Articulos</h1>
+    <h2>Bienvenido {{ $user->name }}</h2>
+    <form method="GET" action="{{ route('logout') }}">
+        <input type="submit" value="Cerrar Sesión">
+    </form>
     <ul>
-        @foreach($articulos as $articulo)
-            <li><a href="#">{{$articulo}}</a><a href="{{ route('deleteArticulo') }}">Borrar</a></li>
+        @foreach ($articulos as $articulo)
+            <li><a href=" {{ route('detalleArticulo', $articulo->id) }}">{{$articulo->titulo; }}</a></li> <a href="{{ route('borrarArticulo', $articulo->id) }}">Borrar</a>
         @endforeach
     </ul>
-    -->
+
+    <a href="{{ route('crearArticulo', $articulo->id) }}">Nuevo Articulo</a>
 </body>
 </html>

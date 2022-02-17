@@ -19,23 +19,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-        $faker = \Faker\Factory::create('ES_es');
-
-        for ($i=0; $i < 10; $i++) { 
-            # code...
-            DB::table('users')->insert([
-                'name' => $faker->name(),
-                'email'=>$faker->unique()->safeEmail(),
-                'email_verified_at' => now(), 
-                'password'=>$faker->password(),
-                'remember_token' => Str::random(10),
-            ]);
-
-            DB::table('articulos')->insert([
-                'titulo' => $faker->name(),
-                'contenido' => $faker->text(500),
-            ]);
-        }
+        $this->call([
+            UsersTableSeeder::class,
+            ArticulosTableSeeder::class,
+        ]);
+        
     }
 }

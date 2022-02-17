@@ -7,10 +7,25 @@
     <title>Articulos - Detalle</title>
 </head>
 <body>
-    <h1>@titulo</h1>
+<h1>{{ $articulo->titulo; }}</h1>
 
-    <p>@contenido</p>
+<p>{{ $articulo->contenido; }}</p>
 
-    <button onclick="window.location('/')">Volver a la página principal</button>
+<h2>Comentarios</h2>
+
+<ul>
+    @foreach($comentarios as $comentario)
+        <li>{{ $comentario->texto; }}</li>
+    @endforeach
+</ul>
+
+<h2>Nuevo comentario</h2>
+
+<form method="POST" action=" {{ route('nuevoComentario') }}">
+    @csrf
+    <input type="text" placeholder="Comentario" name="comment">
+    <input type="submit" value="Enviar"/>
+</form>
+<a href="{{ route('articulos') }}">Volver</a>
 </body>
 </html>
